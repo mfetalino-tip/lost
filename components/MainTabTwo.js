@@ -229,6 +229,9 @@ export default function MainTabTwo({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate('MainTab')}>
           <AntDesign name="home" size={32} color="black" />
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('NewPostsTab')}>
+          <Feather name="bell" size={32} color="black" />
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Tab5')}>
           <Feather name="user" size={32} color="black" />
         </TouchableOpacity>
