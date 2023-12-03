@@ -31,7 +31,9 @@ export default function NewPostsTab({ navigation }) {
       const data = snapshot.val();
       if (data) {
         const itemsArray = Object.values(data);
-        setItems(itemsArray.reverse());
+        // Filter out the items that belong to the currently logged-in user
+        const filteredItemsArray = itemsArray.filter(item => item.userEmail !== user?.email);
+        setItems(filteredItemsArray.reverse());
         setLoading(false);
       }
     });
@@ -40,7 +42,7 @@ export default function NewPostsTab({ navigation }) {
       unsubscribeAuth();
       unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const auth = getAuth();
