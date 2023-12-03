@@ -11,6 +11,7 @@ import Tab2 from './components/Tab2';
 import Tab5 from './components/Tab5';
 import CreatePost from './components/CreatePost';
 import NewPostsTab from './components/NewPostsTab';
+import PostDetail from './components/PostDetails';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="CreatePost" component={CreatePost} />
         <Stack.Screen name="NewPostsTab" component={NewPostsTab} />
         <Stack.Screen name="Tab5" component={Tab5} />
+        <Stack.Screen name="PostDetails" component={PostDetail}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

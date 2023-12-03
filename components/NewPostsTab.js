@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
-import { MaterialIcons, AntDesign, Feather } from '@expo/vector-icons'; // Added imports for navigation icons
+import { MaterialIcons, AntDesign, Feather } from '@expo/vector-icons';
 
 export default function NewPostsTab({ navigation }) {
   const [user, setUser] = useState(null);
@@ -82,6 +82,11 @@ export default function NewPostsTab({ navigation }) {
         : [...prevClickedPosts, postId]
     );
     update(itemRef, { clicked: !isPostClicked(postId) });
+
+    // Log the postId before navigating (for debugging purposes)
+    console.log('Navigating to PostDetails with postId:', postId);
+
+    navigation.navigate('PostDetails', { postId: postId });
   };
 
   return (
@@ -104,10 +109,7 @@ export default function NewPostsTab({ navigation }) {
           {filteredItems.map((item) => (
             <TouchableOpacity
               key={`${item.timestamp}-${item.postId}`}
-              onPress={() => {
-                handlePostClick(item.postId);
-                navigation.navigate('MainTab', { userId: item.userEmail });
-              }}
+              onPress={() => handlePostClick(item.postId)}
             >
               <View style={[
                 styles.postContainer,
